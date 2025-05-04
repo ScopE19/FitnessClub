@@ -1,7 +1,7 @@
 <template>
     <div class="p-4 max-w-md mx-auto">
       <!-- Create Form -->
-      <form @submit.prevent="create" class="mb-8 p-4 border rounded">
+      <form v-if="user?.role === 'admin'" @submit.prevent="create" class="mb-8 p-4 border rounded">
         <h2 class="text-xl font-bold mb-4">Add Membership</h2>
         <input v-model="form.type" placeholder="Type" required class="w-full text-black p-2 mb-2 border">
         <input v-model.number="form.price" type="number" placeholder="Price" required class="w-full text-black p-2 mb-2 border">
@@ -16,8 +16,8 @@
           <h3 class="font-bold">{{ m.type }}</h3>
           <p>${{ m.price }} | {{ m.duration }} months</p>
           <div class="flex gap-2 mt-2">
-            <button @click="edit(m)" class="bg-yellow-500 text-white p-1 rounded">Edit</button>
-            <button @click="remove(m.id)" class="bg-red-500 text-white p-1 rounded">Delete</button>
+            <button v-if="user?.role === 'admin'" @click="edit(m)" class="bg-yellow-500 text-white p-1 rounded">Edit</button>
+            <button v-if="user?.role === 'admin'" @click="remove(m.id)" class="bg-red-500 text-white p-1 rounded">Delete</button>
           </div>
         </div>
   
@@ -37,6 +37,10 @@
   <script setup lang="ts">
   const memberships = ref([])
   const editingId = ref(null)
+
+
+  const { data: user } = useAuth()
+
   
   // Form for creating
   const form = ref({

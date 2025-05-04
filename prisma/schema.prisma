@@ -50,6 +50,7 @@ model User {
   products      Product[] // <-- ДОБАВЛЯЕМ СЮДА
   memberships   UserMembership[]
   attendances   Attendance[]
+    role     String  @default("user") // 'user', 'admin'
 }
 
 model VerificationToken {
