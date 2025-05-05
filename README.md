@@ -1,7 +1,7 @@
 ## Setup
 1. Clone the repo:
    ```bash
-   git clone https://github.com/ScopE19/FitnessClub/tree/master
+   git clone https://github.com/ScopE19/FitnessClub
    ```
 2. Install dependencies:
    ```bash
