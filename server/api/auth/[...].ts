@@ -93,6 +93,7 @@ export default NuxtAuthHandler({
           id: user.id,
           email: user.email,
           name: user.name,
+          role: user.role,
         })
 
         return {
@@ -100,6 +101,7 @@ export default NuxtAuthHandler({
           email: user.email,
           name: user.name,
           image: user.image || null,
+          role: user.role || null,
         }
       }
     }),

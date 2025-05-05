@@ -1329,6 +1329,7 @@ export namespace Prisma {
     name: string | null
     emailVerified: Date | null
     image: string | null
+    role: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1340,6 +1341,7 @@ export namespace Prisma {
     name: string | null
     emailVerified: Date | null
     image: string | null
+    role: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }

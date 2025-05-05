@@ -9,6 +9,10 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  pool {
+    max_connections = 5
+    idle_timeout    = 10 // minutes
+  }
 }
 
 model User {
@@ -16,6 +20,7 @@ model User {
   email         String    @unique
   password      String
   name          String?
+  role          String  @default("user") 
   emailVerified DateTime?
   image         String?
   createdAt     DateTime  @default(now())
