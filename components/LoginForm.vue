@@ -84,7 +84,7 @@ const handleLogin = async () => {
   const result = await signIn('credentials', {
     email: email.value,
     password: password.value,
-    callbackUrl: '/protected',
+    callbackUrl: '/',
     redirect:false
   })
 

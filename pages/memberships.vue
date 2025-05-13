@@ -1,7 +1,9 @@
 <template>
     <div class="p-4 max-w-md mx-auto">
       <!-- Create Form -->
-      <form @submit.prevent="create" class="mb-8 p-4 border rounded">
+    
+      
+      <form v-if="data.user.role === 'admin'" class="mb-8 p-4 border rounded">
         <h2 class="text-xl font-bold mb-4">Add Membership</h2>
         <input v-model="form.type" placeholder="Type" required class="w-full text-black p-2 mb-2 border">
         <input v-model.number="form.price" type="number" placeholder="Price" required class="w-full text-black p-2 mb-2 border">
@@ -15,11 +17,19 @@
         <div v-if="editingId !== m.id">
           <h3 class="font-bold">{{ m.type }}</h3>
           <p>${{ m.price }} | {{ m.duration }} months</p>
-          <div class="flex gap-2 mt-2">
+          <div v-if="data.user.role === 'admin'" class="flex gap-2 mt-2">
             <button @click="edit(m)" class="bg-yellow-500 text-white p-1 rounded">Edit</button>
             <button @click="remove(m.id)" class="bg-red-500 text-white p-1 rounded">Delete</button>
           </div>
+          <!-- User control -->
+          <div v-else="data.user.role === 'user'" class="mt-2">
+            <button @click="chooseMembership(m.id)" class="bg-blue-500 text-white p-1 rounded w-full">
+            Choose This Membership
+            </button>
+          </div>
         </div>
+        
+
   
         <!-- Edit Form -->
         <form v-else @submit.prevent="update(m.id)" class="space-y-2">
@@ -69,6 +79,23 @@
     form.value = { type: '', price: 0, duration: 1 }
     fetchAll()
   }
+
+  async function chooseMembership(membershipId: number) {
+  try {
+    await $fetch('/api/usermembership', {
+      method: 'POST',
+      body: {
+        userId: data.value.user.id,
+        membershipId: membershipId
+      }
+    })
+    alert('Membership successfully assigned!')
+    // Optional: refetch user data or memberships if needed
+  } catch (error) {
+    console.error('Failed to assign membership:', error)
+    alert('There was an error assigning the membership.')
+  }
+}
   
   // Set up edit
   function edit(m) {
@@ -108,7 +135,6 @@
   // Initial load
   onMounted(fetchAll)
   onMounted(() => {
-    console.log("jopa")
     console.log(data.value)
   })
  

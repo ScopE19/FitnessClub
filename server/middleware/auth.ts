@@ -10,6 +10,7 @@ export default defineEventHandler(async (event) => {
       email: session.user.email,
       name: session.user.name,
       image: session.user.image || null,
+      role: session.user.role || null,
     }
 
     console.log('✅ Контекст юзера на сервере:', event.context.user)

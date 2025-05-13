@@ -21,6 +21,7 @@ export default NuxtAuthHandler({
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id // при логине зашиваем id в токен
+        token.role = user.role
       }
       return token
     },
@@ -28,6 +29,7 @@ export default NuxtAuthHandler({
     async session({ session, token }) {
       if (session.user && token) {
         session.user.id = token.id
+        session.user.role = token.role
       }
 
       // Безопасная проверка, чтобы избежать 500 ошибки
