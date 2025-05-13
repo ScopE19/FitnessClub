@@ -5,6 +5,7 @@
    ```
 2. Install dependencies:
    ```bash
+   cd FitnessClub
    npm install
    ```
 3. Create your own .env file in root directory
