@@ -13,7 +13,11 @@
    ```bash
    npx prisma migrate deploy
    ```
-5. Run the dev server:
+5. You can also copy all values of my mock database:
+   ```bash
+   In pgAdmin (or whatever you using) > create database > Restore > Chooose backup_db folder
+   ```
+6. Run the dev server:
    ```bash
    npm run dev
    ```
