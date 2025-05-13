@@ -15,7 +15,7 @@
    ```
 5. You can also copy all values of my mock database:
    ```bash
-   In pgAdmin (or whatever you using) > create database > Restore > Chooose backup_db folder
+   In pgAdmin (or whatever you are using) > create database > Restore > Chooose backup_db folder
    ```
 6. Run the dev server:
    ```bash
